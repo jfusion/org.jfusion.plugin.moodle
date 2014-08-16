@@ -233,12 +233,12 @@ class Admin extends \JFusion\Plugin\Admin
             }
 
             $source_path = $this->params->get('source_path', '');
-            if (!file_exists($source_path . 'admin' . DIRECTORY_SEPARATOR . 'auth.php')) {
+            if (!file_exists($source_path . 'admin/auth.php')) {
                 return Text::_('MOODLE_CONFIG_SOURCE_PATH');
             }
 
             $mod_exists = false;
-            if (file_exists($source_path . 'auth' . DIRECTORY_SEPARATOR . 'jfusion' . DIRECTORY_SEPARATOR . 'auth.php')) {
+            if (file_exists($source_path . 'auth/jfusion/auth.php')) {
                 $mod_exists = true;
             }
 
@@ -282,8 +282,8 @@ HTML;
 
             $archive_filename = 'moodle_module_jfusion.tar.gz';
             $old_chdir = getcwd();
-            $src_archive = $src_path = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'install_module';
-            $src_code = $src_archive . DIRECTORY_SEPARATOR . 'source';
+            $src_archive = $src_path = realpath(dirname(__FILE__)) . '/install_module';
+            $src_code = $src_archive . '/source';
 
             // Create an archive to facilitate the installation into the Moodle installation while extracting
             chdir($src_code);
@@ -293,8 +293,8 @@ HTML;
             chdir($old_chdir);
 
 	        $archive = new Archive();
-            $ret = $archive->extract($src_code . DIRECTORY_SEPARATOR . $archive_filename, $source_path);
-            JFile::delete($src_code . DIRECTORY_SEPARATOR . $archive_filename);
+            $ret = $archive->extract($src_code . '/' . $archive_filename, $source_path);
+            JFile::delete($src_code . '/' . $archive_filename);
 
             if ($ret) {
                 $joomla_baseurl = Factory::getParams('joomla_int')->get('source_url');
@@ -348,7 +348,7 @@ HTML;
             $jname = $this->getJname();
             $db = Factory::getDatabase($jname);
             $source_path = $this->params->get('source_path');
-            $xmlfile = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'install_module' . DIRECTORY_SEPARATOR . 'source' . DIRECTORY_SEPARATOR . 'listfiles.xml';
+            $xmlfile = realpath(dirname(__FILE__)) . '/install_module/source/listfiles.xml';
 
             $listfiles = Framework::getXml($xmlfile);
             $files = $listfiles->file;
@@ -484,7 +484,7 @@ HTML;
             $db = Factory::getDatabase($jname);
 
             $source_path = $this->params->get('source_path');
-            $jfusion_auth = $source_path . 'auth' . DIRECTORY_SEPARATOR . 'jfusion' . DIRECTORY_SEPARATOR . 'auth.php';
+            $jfusion_auth = $source_path . 'auth/jfusion/auth.php';
             if (file_exists($jfusion_auth)) {
                 // find out if jfusion is listed in the active auth plugins
                 $query = $db->getQuery(true)
