@@ -224,7 +224,7 @@ class auth_plugin_jfusion extends auth_plugin_base {
      *
      * @return bool
 	 */
-	function prelogout_hook(){
+	function prelogout_hook() {
 		global $CFG;
 		//  global session;
 
@@ -276,6 +276,9 @@ class auth_plugin_jfusion extends auth_plugin_base {
 		}
 
 		define('_JEXEC', 'Yeah_I_know');
+		/**
+		 * TODO: NEED TO BE fixed as model.curl.php is moved use autoloader instead.
+		 */
 		require_once($params_joomlafullpath.'administrator/components/com_jfusion/models/model.curl.php');
 		$LoginLogout = new DualLogin();
 		$curl_options['post_url']          = $params_joomlabaseurl . $params_logoutpath;
@@ -414,6 +417,9 @@ class auth_plugin_jfusion extends auth_plugin_base {
 		if ($params_joomlaactive != '0')
 		{
             define('_JEXEC', 'Yeah_I_know');
+			/**
+			 * TODO: NEED TO BE fixed as model.curl.php is moved use autoloader instead.
+			 */
             require_once($params_joomlafullpath . 'administrator/components/com_jfusion/models/model.curl.php');
             //    require_once('DualLoginHelper.php');
             $LoginLogout = new DualLogin();

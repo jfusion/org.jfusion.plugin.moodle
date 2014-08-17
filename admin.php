@@ -14,12 +14,11 @@ use JFusion\Factory;
 use JFusion\Framework;
 
 use Joomla\Archive\Archive;
+use Joomla\Filesystem\File;
+use Joomla\Filesystem\Folder;
 use Joomla\Language\Text;
 
 use Psr\Log\LogLevel;
-
-use JFile;
-use JFolder;
 
 use Exception;
 use RuntimeException;
@@ -277,8 +276,6 @@ HTML;
         try {
             $db = Factory::getDatabase($jname);
             $source_path = $this->params->get('source_path');
-            jimport('joomla.filesystem.archive');
-            jimport('joomla.filesystem.file');
 
             $archive_filename = 'moodle_module_jfusion.tar.gz';
             $old_chdir = getcwd();
@@ -294,7 +291,7 @@ HTML;
 
 	        $archive = new Archive();
             $ret = $archive->extract($src_code . '/' . $archive_filename, $source_path);
-            JFile::delete($src_code . '/' . $archive_filename);
+            File::delete($src_code . '/' . $archive_filename);
 
             if ($ret) {
                 $joomla_baseurl = Factory::getParams('joomla_int')->get('source_url');
@@ -342,9 +339,6 @@ HTML;
     {
         $status = array('error' => array(), 'debug' => array());
         try {
-            jimport('joomla.filesystem.file');
-            jimport('joomla.filesystem.folder');
-
             $jname = $this->getJname();
             $db = Factory::getDatabase($jname);
             $source_path = $this->params->get('source_path');
@@ -362,9 +356,9 @@ HTML;
                 $file = preg_replace('#/#', DIRECTORY_SEPARATOR, $file);
                 @chmod($source_path . $file, 0777);
                 if (!is_dir($source_path . $file)) {
-                    JFile::delete($source_path . $file);
+	                File::delete($source_path . $file);
                 } else {
-                    JFolder::delete($source_path . $file);
+                    Folder::delete($source_path . $file);
                 }
             }
             $querys = array();
