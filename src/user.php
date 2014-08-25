@@ -141,7 +141,7 @@ class User extends \JFusion\Plugin\User
 			$query = $db->getQuery(true)
 				->select('*, id as userid')
 				->from('#__user')
-				->where($identifier_type . ' = ' . $db->quote($identifier));
+				->where($db->quoteName($identifier_type) . ' = ' . $db->quote($identifier));
 
 			$db->setQuery($query);
 			$result = $db->loadObject();
@@ -453,7 +453,7 @@ class User extends \JFusion\Plugin\User
 		$query = $db->getQuery(true)
 			->select('*')
 			->from('#__user')
-			->where($identifier_type . ' = ' . $db->quote($identifier));
+			->where($db->quoteName($identifier_type) . ' = ' . $db->quote($identifier));
 
 		$db->setQuery($query);
 		$result = $db->loadObject();

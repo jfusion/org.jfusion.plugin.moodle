@@ -9,6 +9,7 @@
  * @link       http://www.jfusion.org
  */
 
+use JFusion\Application\Application;
 use JFusion\Archive\Tar;
 use JFusion\Factory;
 use JFusion\Framework;
@@ -541,7 +542,7 @@ HTML;
             $jname = $this->getJname();
             $db = Factory::getDatabase($jname);
 
-            $activation = ((Factory::getApplication()->input->get('activation', 1)) ? 'true' : 'false');
+            $activation = ((Application::getInstance()->input->get('activation', 1)) ? 'true' : 'false');
             if ($activation == 'true') {
                 $query = $db->getQuery(true)
                     ->update('#__config_plugins')
