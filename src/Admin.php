@@ -10,7 +10,6 @@
  */
 
 use JFusion\Application\Application;
-use JFusion\Archive\Tar;
 use JFusion\Factory;
 use JFusion\Framework;
 
