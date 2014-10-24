@@ -277,6 +277,9 @@ HTML;
             $db = Factory::getDatabase($jname);
             $source_path = $this->params->get('source_path');
 
+	        /**
+	         * TODO: need to recreate this with new syntax ?
+	         */
             $archive_filename = 'moodle_module_jfusion.tar.gz';
             $old_chdir = getcwd();
             $src_archive = $src_path = realpath(dirname(__FILE__)) . '/install_module';
