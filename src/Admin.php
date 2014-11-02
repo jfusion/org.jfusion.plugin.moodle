@@ -223,6 +223,9 @@ class Admin extends \JFusion\Plugin\Admin
      */
     public function moduleInstallation()
     {
+	    /**
+	     * TODO: REMOVE/MOVE ? or fix image path?
+	     */
         $jname = $this->getJname();
         try {
             try {
