@@ -291,7 +291,7 @@ class User extends \JFusion\Plugin\User
 		$query = $db->getQuery(true)
 			->update('#__user')
 			->set('password = ' . $db->quote($existinguser->password))
-			->where('id = ' . $existinguser->userid);
+			->where('id = ' . (int)$existinguser->userid);
 
 		$db->setQuery($query);
 		$db->execute();
@@ -463,7 +463,7 @@ class User extends \JFusion\Plugin\User
 			$query = $db->getQuery(true)
 				->update('#__user')
 				->set('deleted = 0')
-				->where('id = ' . $db->quote($result->id));
+				->where('id = ' . (int)$result->id);
 			$db->setQuery($query);
 			$db->execute();
 		} else {
