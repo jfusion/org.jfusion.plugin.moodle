@@ -245,11 +245,11 @@ class Admin extends \JFusion\Plugin\Admin
             }
 
             if ($mod_exists) {
-                $src = 'components/com_jfusion/images/tick.png';
+	            $check = '<span class="check" style="color: green;" id="usergroups_img">&#x2714;</span>';
                 $mod = 'uninstallModule';
                 $text = Text::_('MODULE_UNINSTALL_BUTTON');
             } else {
-                $src = 'components/com_jfusion/images/cross.png';
+	            $check = '<span class="check" style="color: red;" id="usergroups_img">&#x2716;</span>';
                 $mod = 'installModule';
                 $text = Text::_('MODULE_INSTALL_BUTTON');
             }
@@ -261,7 +261,7 @@ class Admin extends \JFusion\Plugin\Admin
                     </div>
                 </div>
 
-                <img src="{$src}" style="margin-left:10px;" id="usergroups_img"/>
+				{$check}
 HTML;
         } catch (Exception $e) {
             $html = $e->getMessage();
@@ -514,10 +514,10 @@ HTML;
                 }
 
                 if ($activated) {
-                    $src = 'components/com_jfusion/images/tick.png';
+	                $check = '<span class="check" style="color: green;">&#x2714;</span>';
                     $text = Text::_('MODULE_DEACTIVATION_BUTTON');
                 } else {
-                    $src = 'components/com_jfusion/images/cross.png';
+	                $check = '<span class="check" style="color: red;">&#x2716;</span>';
                     $text = Text::_('MODULE_ACTIVATION_BUTTON');
                 }
 
@@ -529,7 +529,7 @@ HTML;
 			    </div>
 			    <input type="hidden" name="activation" id="activation" value="{$activated}"/>
 
-			    <img src="{$src}" style="margin-left:10px;"/>
+				{$check}
 HTML;
             }
         } catch (Exception $e) {
